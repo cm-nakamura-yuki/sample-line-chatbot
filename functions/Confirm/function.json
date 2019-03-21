@@ -1,0 +1,9 @@
+{
+    "description": "line pay webhook",
+    "environment": {
+        "CHANNEL_ACCESS_TOKEN": "",
+        "TABLE_NAME": "",
+        "CHANNEL_ID": "",
+        "CHANNEL_SECRET": ""
+    }
+  }

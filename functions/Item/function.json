@@ -1,0 +1,6 @@
+{
+    "description": "Get product items.",
+    "environment": {
+        "TABLE_NAME": ""
+    }
+  }

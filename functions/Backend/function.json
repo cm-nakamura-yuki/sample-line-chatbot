@@ -1,0 +1,11 @@
+{
+    "description": "chatbot webhook",
+    "environment": {
+        "CHANNEL_ACCESS_TOKEN": "",
+        "CHANNEL_ID": "",
+        "CHANNEL_SECRET": "",
+        "IMG_DOMAIN_NAME": "",
+        "API_DOMAIN_NAME": "",
+        "TABLE_NAME": ""
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "description": "List product items.",
+    "environment": {
+        "TABLE_NAME": ""
+    }
+  }
