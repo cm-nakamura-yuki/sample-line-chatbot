@@ -1,8 +1,30 @@
 import * as Line from '@line/bot-sdk';
 import * as Aws from 'aws-sdk';
 import * as rp from 'request-promise';
-const Client = new Line.Client({channelAccessToken: 'xxxxxx'});
+
+let channelAccessToken:string = '';
+if (process.env.CHANNEL_ACCESS_TOKEN) {
+    channelAccessToken = process.env.CHANNEL_ACCESS_TOKEN;
+}
+
+let tableName:string = '';
+if (process.env.TABLE_NAME) {
+    tableName = process.env.TABLE_NAME;
+}
+
+let chanelId:string = '';
+if (process.env.CHANNEL_ID) {
+    chanelId = process.env.CHANNEL_ID;
+}
+
+let channelSecret:string = '';
+if (process.env.CHANNEL_SECRET) {
+    channelSecret = process.env.CHANNEL_SECRET;
+}
+
+const Client = new Line.Client({channelAccessToken: channelAccessToken});
 const dynamo = new Aws.DynamoDB.DocumentClient();
+
 
 exports.handler = async(event:any) => {
     console.log(JSON.stringify(event));
@@ -10,7 +32,7 @@ exports.handler = async(event:any) => {
     let transactionId = event.queryStringParameters.transactionId;
 
     let param:Aws.DynamoDB.DocumentClient.GetItemInput = {
-        TableName: 'payments',
+        TableName: tableName,
         Key: {
             transactionId: orderId
         }
@@ -28,8 +50,8 @@ exports.handler = async(event:any) => {
         }),
         headers: {
             'Content-Type': 'application/json',
-            'X-LINE-ChannelId': 'xxxxxx',
-            'X-LINE-ChannelSecret': 'xxxxxx'
+            'X-LINE-ChannelId': chanelId,
+            'X-LINE-ChannelSecret': channelSecret
         }
     }
     let data = await rp.post(paymentUrl, options).promise();
